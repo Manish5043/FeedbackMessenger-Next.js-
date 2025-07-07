@@ -9,15 +9,20 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-email/components": "^0.1.1",
+    "bcrypt": "^6.0.0",
     "mongoose": "^8.16.1",
     "next": "15.3.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-email": "^4.0.17",
+    "resend": "^4.6.0",
     "zod": "^3.25.75"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
+    "@types/bcryptjs": "^3.0.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
