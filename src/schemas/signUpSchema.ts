@@ -1,5 +1,5 @@
 import {z} from 'zod'
-import { email } from 'zod/v4'
+
 
 
 export const usernameValidation = z.string()

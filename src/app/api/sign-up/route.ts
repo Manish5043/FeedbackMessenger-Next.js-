@@ -3,7 +3,7 @@ import UserModel from "@/model/User";
 import bcrypt from "bcryptjs"
 
 import { sendVerificationEmail } from "@/helpers/sendVerificationEmail";
-import { success } from "zod/v4";
+
 
 export async function POST(request: Request) {
     await dbConnect()
@@ -24,10 +24,10 @@ export async function POST(request: Request) {
         }
 
         const existingUserByEmail = await UserModel.findOne({email})
-        const verifyCode = Math.floor(100000+ Math.random() *900000).toString()
+        let verifyCode = Math.floor(100000+ Math.random() *900000).toString()
 
         if(existingUserByEmail) {
-            if(existingUserByEmail) {
+            
                 if(existingUserByEmail.isVerified) {
                     return Response.json({
                         success:false,
@@ -40,7 +40,7 @@ export async function POST(request: Request) {
                     existingUserByEmail.verifyCodeEpiry = new Date(Date.now()+3600000)
                     await existingUserByEmail.save()
                 }
-            }
+            
 
         }
         else{
@@ -72,7 +72,7 @@ export async function POST(request: Request) {
         if(!emailResponse.success) {
             return Response.json({
                 success: false,
-                message: emailResponse.message
+                message: emailResponse.message,
             }, {status:500})
         }
 
@@ -82,11 +82,11 @@ export async function POST(request: Request) {
         }, {status:201})
      
     } catch (error) {
-        console.error('Error registering user', error)
+        console.error('Error registering user:', error)
         return Response.json(
             {
                 success:false,
-                message: "Error registering user "
+                message: "Error registering user ",
             },
             {
                 status: 500

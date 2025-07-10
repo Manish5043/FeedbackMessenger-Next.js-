@@ -12,12 +12,12 @@ export async function sendVerificationEmail(
         await resend.emails.send({
             from: 'onboarding@resend.dev',
             to: 'email',
-            subject: 'Feedback messenger | Verification code',
+            subject: 'Feedback messenger  Verification code',
             react: VerificationEmail({username, otp: verifyCode}),
         });
-        return {success: true, message: 'Verification email sned successfully'}
+        return {success: true, message: 'Verification email send successfully'}
     } catch (emailError) {
-        console.error("Error sending Verification email", emailError)
+        console.error("Error sending Verification email:", emailError)
         return {success: false, message: 'Failed to send verification email'}
     }
 }
